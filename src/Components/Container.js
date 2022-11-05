@@ -9,6 +9,7 @@ const Container = () => {
 
   const [searchUrl, setSearchUrl] = useState("");
   const [imageData, setImageData] = useState([]);
+  
   useEffect(
     function effectFunction() {
       async function getImages() {
