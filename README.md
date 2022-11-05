@@ -1,5 +1,5 @@
 ##### Author : Satyam Raj
-<a href="https://pixabay-search-image.netlify.app/" target="_blank">Preview</a>
+[Preview](https://pixabay-search-image.netlify.app/)
 # Image Search using React
 ### This application lets you search and download images.
 # Demo
