@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Container from "./Container";
-
-const API_KEY = "30292224-031e1cfd1b646821438ddae59";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [searchUrl, setSearchUrl] = useState(
-    "https://pixabay.com/api/?key=30292224-031e1cfd1b646821438ddae59&image_type=photo&pretty=true"
-  );
+  const navigate = useNavigate();
+
+  const navigateToAnother = () => {
+    navigate(`/${searchInput}`);
+  };
   return (
     <>
       <section className="text-gray-400 bg-gray-900 body-font">
@@ -17,7 +17,8 @@ const Header = () => {
               Image Search using Pixabay API
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Popular Images: nature, wallpaper, background, sky, halloween, cat, sky cloud, food, money, dog, flowers, car, iphone wallpaper
+              Popular Images: nature, wallpaper, background, sky, halloween,
+              cat, sky cloud, food, money, dog, flowers, car, iphone wallpaper
             </p>
           </div>
           <div className="flex lg:w-3/5 w-full sm:flex-row flex-col mx-auto px-0 sm:px-0 items-end sm:space-x-4 sm:space-y-0 space-y-4">
@@ -27,7 +28,9 @@ const Header = () => {
                 id="search"
                 name="search"
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
+                onChange={(e) => {
+                  setSearchInput(e.target.value);
+                }}
                 placeholder="Search Images Here.."
                 className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
@@ -35,13 +38,8 @@ const Header = () => {
             <button
               onClick={() => {
                 if (searchInput !== "") {
-                  setSearchUrl(
-                    "https://pixabay.com/api/?key=" +
-                      API_KEY +
-                      "&q=" +
-                      encodeURIComponent(searchInput) +
-                      "&image_type=photo"
-                  );
+                  navigateToAnother();
+                  setSearchInput("");
                 }
               }}
               className="text-white bg-green-500 border-0 mx-auto py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
@@ -51,10 +49,8 @@ const Header = () => {
           </div>
         </div>
       </section>
-      <Container searchUrl={searchUrl} />
     </>
   );
 };
 
 export default Header;
-

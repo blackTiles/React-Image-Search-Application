@@ -1,11 +1,31 @@
-import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Image from "./Image";
 
-const Container = ({ searchUrl }) => {
+const API_KEY = "30292224-031e1cfd1b646821438ddae59";
+
+const Container = () => {
+  const { search_text } = useParams();
+
+  const [searchUrl, setSearchUrl] = useState("");
   const [imageData, setImageData] = useState([]);
   useEffect(
     function effectFunction() {
       async function getImages() {
+        if (search_text === undefined) {
+          setSearchUrl(
+            "https://pixabay.com/api/?key=30292224-031e1cfd1b646821438ddae59&image_type=photo&pretty=true"
+          );
+        } else {
+          setSearchUrl(
+            "https://pixabay.com/api/?key=" +
+              API_KEY +
+              "&q=" +
+              encodeURIComponent(search_text) +
+              "&image_type=photo"
+          );
+        }
+
         let url = searchUrl;
         let myObject = await fetch(url);
         let myText = await myObject.json();
@@ -13,7 +33,7 @@ const Container = ({ searchUrl }) => {
       }
       getImages();
     },
-    [searchUrl]
+    [search_text, searchUrl]
   );
 
   return (
