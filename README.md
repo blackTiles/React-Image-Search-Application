@@ -1,4 +1,4 @@
-Author : Satyam Raj
+##### Author : Satyam Raj
 [Preview](https://pixabay-search-image.netlify.app/)
 # Image Search using React
 ### This application lets you search and download images.
@@ -7,5 +7,5 @@ Author : Satyam Raj
 ![Responsive](./public/preview3.jpg)
 ![](./public/preview2.png)
 
-
+ 
 
